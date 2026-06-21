@@ -85,112 +85,153 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- Contact Form Handling & Validation ---
-  const contactForm = document.getElementById('contact-form');
-  const successToast = document.getElementById('success-toast');
 
-  contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    let isFormValid = true;
 
-    // Validate Name
-    const nameInput = document.getElementById('contact-name');
-    const nameGroup = document.getElementById('group-name');
-    if (!nameInput.value.trim()) {
-      nameGroup.classList.add('error');
-      isFormValid = false;
-    } else {
-      nameGroup.classList.remove('error');
+  // --- Interactive Data Pipeline Simulation (Concept A) ---
+  const pipelineContainer = document.querySelector('.pipeline-container');
+  const canvas = document.getElementById('pipeline-canvas');
+  if (pipelineContainer && canvas) {
+    const ctx = canvas.getContext('2d');
+    const nodes = document.querySelectorAll('.pipeline-node');
+    let pathPoints = [];
+    let particles = [];
+    let speedFactor = 1.0;
+
+    // Resolve CSS colors dynamically
+    const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--color-primary').trim() || '#3366CC';
+    const secondaryColor = getComputedStyle(document.documentElement).getPropertyValue('--color-secondary').trim() || '#33A6B8';
+
+    // Set canvas dimensions based on container bounding client rect
+    function resizeCanvas() {
+      const dpr = window.devicePixelRatio || 1;
+      const rect = pipelineContainer.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.scale(dpr, dpr);
+      canvas.style.width = `${rect.width}px`;
+      canvas.style.height = `${rect.height}px`;
+
+      calculateNodePositions();
     }
 
-    // Validate Email
-    const emailInput = document.getElementById('contact-email');
-    const emailGroup = document.getElementById('group-email');
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailInput.value.trim() || !emailPattern.test(emailInput.value.trim())) {
-      emailGroup.classList.add('error');
-      isFormValid = false;
-    } else {
-      emailGroup.classList.remove('error');
+    // Calculate center coordinates of each node icon relative to the container
+    function calculateNodePositions() {
+      const containerRect = pipelineContainer.getBoundingClientRect();
+      pathPoints = Array.from(nodes).map(node => {
+        const icon = node.querySelector('.node-icon');
+        const iconRect = icon.getBoundingClientRect();
+        return {
+          x: iconRect.left - containerRect.left + iconRect.width / 2,
+          y: iconRect.top - containerRect.top + iconRect.height / 2
+        };
+      });
     }
 
-    // Validate Subject
-    const subjectInput = document.getElementById('contact-subject');
-    const subjectGroup = document.getElementById('group-subject');
-    if (!subjectInput.value.trim()) {
-      subjectGroup.classList.add('error');
-      isFormValid = false;
-    } else {
-      subjectGroup.classList.remove('error');
+    // Generate a new particle
+    function createParticle(segment = 0) {
+      return {
+        segment: segment,
+        progress: 0,
+        speed: 0.007 + Math.random() * 0.008,
+        size: 2.2 + Math.random() * 1.8,
+        color: Math.random() > 0.4 ? primaryColor : secondaryColor,
+        opacity: 0.6 + Math.random() * 0.4
+      };
     }
 
-    // Validate Message
-    const messageInput = document.getElementById('contact-message');
-    const messageGroup = document.getElementById('group-message');
-    if (!messageInput.value.trim()) {
-      messageGroup.classList.add('error');
-      isFormValid = false;
-    } else {
-      messageGroup.classList.remove('error');
+    // Pre-populate particles along path
+    for (let i = 0; i < 10; i++) {
+      const segment = Math.floor(Math.random() * (nodes.length - 1));
+      const p = createParticle(segment);
+      p.progress = Math.random();
+      particles.push(p);
     }
 
-    // If form is valid, submit
-    if (isFormValid) {
-      // Simulate form submission
-      const submitButton = document.getElementById('contact-submit');
-      const originalBtnText = submitButton.innerHTML;
-      
-      submitButton.disabled = true;
-      submitButton.innerHTML = `Sending... <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="animate-spin"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>`;
+    // Listen to node hovers to speed up/spawn particles
+    nodes.forEach(node => {
+      node.addEventListener('mouseenter', () => {
+        speedFactor = 2.4;
+        // Spawn additional particles at start
+        for (let i = 0; i < 3; i++) {
+          particles.push(createParticle(0));
+        }
+      });
 
-      setTimeout(() => {
-        // Show success toast
-        successToast.classList.add('show');
-        
-        // Reset Form
-        contactForm.reset();
-        
-        // Restore button state
-        submitButton.disabled = false;
-        submitButton.innerHTML = originalBtnText;
+      node.addEventListener('mouseleave', () => {
+        speedFactor = 1.0;
+      });
+    });
 
-        // Hide success toast after 4 seconds
-        setTimeout(() => {
-          successToast.classList.remove('show');
-        }, 4000);
-      }, 1500);
-    }
-  });
+    window.addEventListener('resize', resizeCanvas);
 
-  // Real-time input error removal
-  const formInputs = contactForm.querySelectorAll('.form-control');
-  formInputs.forEach(input => {
-    input.addEventListener('input', () => {
-      const group = input.closest('.form-group');
-      if (input.value.trim()) {
-        if (input.type === 'email') {
-          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (emailPattern.test(input.value.trim())) {
-            group.classList.remove('error');
+    // Animation Loop
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      if (pathPoints.length >= 2) {
+        // Draw the background connection lines
+        ctx.beginPath();
+        ctx.strokeStyle = 'rgba(51, 102, 204, 0.12)';
+        ctx.lineWidth = 2.5;
+        ctx.setLineDash([5, 5]);
+        ctx.moveTo(pathPoints[0].x, pathPoints[0].y);
+        for (let i = 1; i < pathPoints.length; i++) {
+          ctx.lineTo(pathPoints[i].x, pathPoints[i].y);
+        }
+        ctx.stroke();
+        ctx.setLineDash([]); // Reset dash
+
+        // Update and draw particles
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+
+          // Increment progress along segment
+          p.progress += p.speed * speedFactor;
+
+          if (p.progress >= 1) {
+            p.progress = 0;
+            p.segment++;
+
+            // If particle reaches the end, recycle it or delete if overflow
+            if (p.segment >= pathPoints.length - 1) {
+              if (particles.length > 15) {
+                particles.splice(i, 1);
+                continue;
+              } else {
+                p.segment = 0;
+                p.speed = 0.007 + Math.random() * 0.008;
+              }
+            }
           }
-        } else {
-          group.classList.remove('error');
+
+          // Draw active particle
+          const start = pathPoints[p.segment];
+          const end = pathPoints[p.segment + 1];
+
+          if (start && end) {
+            const x = start.x + (end.x - start.x) * p.progress;
+            const y = start.y + (end.y - start.y) * p.progress;
+
+            ctx.beginPath();
+            ctx.arc(x, y, p.size, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
+            ctx.shadowBlur = 6;
+            ctx.shadowColor = p.color;
+            ctx.globalAlpha = p.opacity;
+            ctx.fill();
+            ctx.globalAlpha = 1.0;
+            ctx.shadowBlur = 0; // Reset shadow
+          }
         }
       }
-    });
-  });
 
-  // Add spinning styling for spinner SVG
-  const style = document.createElement('style');
-  style.innerHTML = `
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      requestAnimationFrame(animate);
     }
-    .animate-spin {
-      animation: spin 1s linear infinite;
-    }
-  `;
-  document.head.appendChild(style);
+
+    // Let layouts calculate first, then init
+    setTimeout(() => {
+      resizeCanvas();
+      requestAnimationFrame(animate);
+    }, 200);
+  }
 });

@@ -47,41 +47,121 @@
   <main>
     <!-- Hero Section -->
     <section id="hero" class="hero">
-      <div class="hero-glow-1"></div>
-      <div class="hero-glow-2"></div>
-      <div class="container hero-content">
-        <div class="hero-intro reveal active">
-          <span class="hero-pulse"></span>
-          <span>Open for Opportunities</span>
-        </div>
-        <h1 class="hero-title reveal active">
-          Hi, I'm <span>Siddhesh Kadam</span>.<br>
-          Exhilarating AI adventure since 2020.
-        </h1>
-        <p class="hero-description reveal active">
-          Data Integration & AI Specialist with over 4 years of experience. I specialize in building data pipelines,
-          creating real-time dashboards, spatial data processing, and implementing machine learning and deep learning
-          models to solve complex real-world problems.
-        </p>
-        <div class="hero-actions reveal active">
-          <a href="#contact" class="btn btn-primary" id="btn-hero-contact">
-            Get in touch
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-              stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </a>
-          <a href="Siddhesh_Kadam_Resume.pdf" class="btn btn-secondary" id="btn-hero-resume"
-            download="Siddhesh_Kadam_Resume.pdf">
-            Download Resume
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-              <polyline points="7 10 12 15 17 10"></polyline>
-              <line x1="12" y1="15" x2="12" y2="3"></line>
-            </svg>
-          </a>
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-left">
+            <div class="hero-intro reveal active">
+              <span class="hero-pulse"></span>
+              <span>Open for Opportunities</span>
+            </div>
+            <h1 class="hero-title reveal active">
+              Hi, I'm <span>Siddhesh Kadam</span>.<br>
+              Exhilarating AI adventure since 2020.
+            </h1>
+            <p class="hero-description reveal active">
+              Data Integration & AI Specialist with over 4 years of experience. I specialize in building data pipelines,
+              creating real-time dashboards, spatial data processing, and implementing machine learning and deep
+              learning
+              models to solve complex real-world problems.
+            </p>
+            <div class="hero-actions reveal active">
+              <a href="#contact" class="btn btn-primary" id="btn-hero-contact">
+                Get in touch
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+              <a href="Siddhesh_Kadam_Resume.pdf" class="btn btn-secondary" id="btn-hero-resume"
+                download="Siddhesh_Kadam_Resume.pdf">
+                Download Resume
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-right reveal active">
+            <div class="pipeline-container">
+              <canvas id="pipeline-canvas" class="pipeline-canvas"></canvas>
+              <div class="pipeline-flow">
+                <!-- Stage 1 -->
+                <div class="pipeline-node" id="node-ingest">
+                  <div class="node-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="7 10 12 15 17 10"></polyline>
+                      <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                  </div>
+                  <div class="node-content">
+                    <span class="node-tag">Stage 1</span>
+                    <h4 class="node-title">Ingest</h4>
+                    <p class="node-desc">SQL, SPSS, Satellite Data</p>
+                  </div>
+                </div>
+
+                <!-- Stage 2 -->
+                <div class="pipeline-node" id="node-process">
+                  <div class="node-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                  </div>
+                  <div class="node-content">
+                    <span class="node-tag">Stage 2</span>
+                    <h4 class="node-title">Process</h4>
+                    <p class="node-desc">Pandas, NumPy, SSIS</p>
+                  </div>
+                </div>
+
+                <!-- Stage 3 -->
+                <div class="pipeline-node" id="node-model">
+                  <div class="node-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path
+                        d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                      </path>
+                      <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                      <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                    </svg>
+                  </div>
+                  <div class="node-content">
+                    <span class="node-tag">Stage 3</span>
+                    <h4 class="node-title">Predict</h4>
+                    <p class="node-desc">PyTorch, Scikit-learn</p>
+                  </div>
+                </div>
+
+                <!-- Stage 4 -->
+                <div class="pipeline-node" id="node-deliver">
+                  <div class="node-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                      <line x1="9" y1="3" x2="9" y2="21"></line>
+                      <line x1="15" y1="3" x2="15" y2="21"></line>
+                      <line x1="3" y1="9" x2="21" y2="9"></line>
+                      <line x1="3" y1="15" x2="21" y2="15"></line>
+                    </svg>
+                  </div>
+                  <div class="node-content">
+                    <span class="node-tag">Stage 4</span>
+                    <h4 class="node-title">Deliver</h4>
+                    <p class="node-desc">Interactive Dashboards</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -402,8 +482,8 @@
                 </svg>
               </div>
               <div class="project-links">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="project-link"
-                  aria-label="GitHub Repository for Cartoon Image Project">
+                <a href="https://github.com/siddheshkadam21" target="_blank" rel="noopener noreferrer"
+                  class="project-link" aria-label="GitHub Repository for Cartoon Image Project">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
                     <path
@@ -441,8 +521,8 @@
                 </svg>
               </div>
               <div class="project-links">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="project-link"
-                  aria-label="GitHub Repository for Emotion Detection Model">
+                <a href="https://github.com/siddheshkadam21" target="_blank" rel="noopener noreferrer"
+                  class="project-link" aria-label="GitHub Repository for Emotion Detection Model">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
                     <path
@@ -505,6 +585,45 @@
               <span class="project-tag">Machine Learning</span>
               <span class="project-tag">Random Forest</span>
               <span class="project-tag">Hyperparameter Tuning</span>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="project-card reveal">
+            <div class="project-meta">
+              <div class="project-icon" aria-label="Email Outreach Agent icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/siddheshkadam21" target="_blank" rel="noopener noreferrer"
+                  class="project-link" aria-label="GitHub Repository for Sales Agent Project">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                    </path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div>
+              <h3 class="project-title">Sales Agent (Email Agent)</h3>
+              <p class="project-description">
+                A multi-agent cold outreach system. The first agent processes target domain names to discover similar
+                companies and draft highly personalized, human-written introduction emails. The second agent dynamically
+                extracts target contact email addresses, automating the entire pipeline while keeping the outreach
+                natural and authentic.
+              </p>
+            </div>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">Flask</span>
+              <span class="project-tag">HTML & CSS</span>
+              <span class="project-tag">AI Agents</span>
             </div>
           </div>
         </div>
@@ -648,98 +767,63 @@
 
     <!-- Contact Section -->
     <section id="contact" class="section">
-      <div class="container">
-        <div class="contact-grid">
-          <div class="contact-info reveal">
-            <div>
-              <div class="section-tag">Get in Touch</div>
-              <h2 class="section-title">Let's work together</h2>
-              <p class="section-subtitle" style="margin-top: 1rem;">
-                Have an interesting problem to solve, a pipeline to build, or just want to chat about data science? Fill
-                out the form or reach out directly.
-              </p>
-            </div>
+      <div class="container contact-section-center">
+        <div class="reveal">
+          <div class="section-tag">Get in Touch</div>
+          <h2 class="section-title">Let's work together</h2>
+          <p class="section-subtitle"
+            style="margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+            Have an interesting problem to solve, a pipeline to build, or just want to chat about data science? Reach
+            out directly.
+          </p>
+        </div>
 
-            <div class="contact-card">
-              <div class="contact-icon" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                  <polyline points="22,6 12,13 2,6"></polyline>
-                </svg>
-              </div>
-              <div class="contact-details">
-                <h4>Email Address</h4>
-                <p><a href="mailto:siddheshvkadam21@gmail.com" id="contact-email-link">siddheshvkadam21@gmail.com</a>
-                </p>
-              </div>
+        <div class="contact-cards-grid reveal">
+          <!-- Email Card -->
+          <div class="contact-card">
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
             </div>
-
-            <div class="contact-card">
-              <div class="contact-icon" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path
-                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
-                  </path>
-                </svg>
-              </div>
-              <div class="contact-details">
-                <h4>Phone Number</h4>
-                <p><a href="tel:+917506838151" id="contact-phone-link">+91 75068 38151</a></p>
-              </div>
-            </div>
-
-            <div class="contact-card">
-              <div class="contact-icon" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-              </div>
-              <div class="contact-details">
-                <h4>Location</h4>
-                <p>Mumbai, Maharashtra, India</p>
-              </div>
+            <div class="contact-details">
+              <h4>Email Address</h4>
+              <p><a href="mailto:siddheshvkadam21@gmail.com" id="contact-email-link">siddheshvkadam21@gmail.com</a></p>
             </div>
           </div>
 
-          <form class="contact-form reveal" id="contact-form" novalidate>
-            <div class="form-group" id="group-name">
-              <label for="contact-name" class="form-label">Full Name</label>
-              <input type="text" id="contact-name" class="form-control" placeholder="John Doe" required>
-              <span class="form-error-msg">Please enter your name</span>
-            </div>
-
-            <div class="form-group" id="group-email">
-              <label for="contact-email" class="form-label">Email Address</label>
-              <input type="email" id="contact-email" class="form-control" placeholder="john@example.com" required>
-              <span class="form-error-msg">Please enter a valid email address</span>
-            </div>
-
-            <div class="form-group" id="group-subject">
-              <label for="contact-subject" class="form-label">Subject</label>
-              <input type="text" id="contact-subject" class="form-control" placeholder="How can I help you?" required>
-              <span class="form-error-msg">Please enter a subject</span>
-            </div>
-
-            <div class="form-group" id="group-message">
-              <label for="contact-message" class="form-label">Message</label>
-              <textarea id="contact-message" class="form-control" placeholder="Write your message here..."
-                required></textarea>
-              <span class="form-error-msg">Please enter your message</span>
-            </div>
-
-            <button type="submit" class="btn btn-primary" id="contact-submit" style="width: 100%;">
-              Send Message
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          <!-- Phone Card -->
+          <div class="contact-card">
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
-                <line x1="22" y1="2" x2="11" y2="13"></line>
-                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                </path>
               </svg>
-            </button>
-          </form>
+            </div>
+            <div class="contact-details">
+              <h4>Phone Number</h4>
+              <p><a href="tel:+917506838151" id="contact-phone-link">+91 75068 38151</a></p>
+            </div>
+          </div>
+
+          <!-- Location Card -->
+          <div class="contact-card">
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <div class="contact-details">
+              <h4>Location</h4>
+              <p>Mumbai, Maharashtra, India</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -761,8 +845,8 @@
             <circle cx="4" cy="4" r="2"></circle>
           </svg>
         </a>
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-social-link"
-          aria-label="GitHub Profile">
+        <a href="https://github.com/siddheshkadam21" target="_blank" rel="noopener noreferrer"
+          class="footer-social-link" aria-label="GitHub Profile">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
             <path
@@ -774,22 +858,6 @@
     </div>
   </footer>
 
-  <!-- Toast Notification Container -->
-  <div class="toast-container" id="toast-container">
-    <div class="toast" id="success-toast">
-      <div class="toast-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-          stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-          <polyline points="22 4 12 14.01 9 11.01"></polyline>
-        </svg>
-      </div>
-      <div class="toast-message">
-        <h5>Message Sent!</h5>
-        <p>Thank you, I will get back to you shortly.</p>
-      </div>
-    </div>
-  </div>
 
   <!-- JavaScript Behavior -->
   <script src="index.js"></script>
