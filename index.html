@@ -30,6 +30,7 @@
           <li><a href="#experience" id="link-experience">Experience</a></li>
           <li><a href="#skills" id="link-skills">Skills</a></li>
           <li><a href="#projects" id="link-projects">Projects</a></li>
+          <li><a href="#playground" id="link-playground">Playground</a></li>
           <li><a href="#certifications" id="link-certifications">Certifications</a></li>
           <li><a href="#contact" id="link-contact">Contact</a></li>
         </ul>
@@ -91,7 +92,7 @@
               <canvas id="pipeline-canvas" class="pipeline-canvas"></canvas>
               <div class="pipeline-flow">
                 <!-- Stage 1 -->
-                <div class="pipeline-node" id="node-ingest">
+                <div class="pipeline-node" id="node-ingest" style="--node-color: #3366CC; --node-glow: rgba(51, 102, 204, 0.25);">
                   <div class="node-icon">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                       stroke-linecap="round" stroke-linejoin="round">
@@ -108,7 +109,7 @@
                 </div>
 
                 <!-- Stage 2 -->
-                <div class="pipeline-node" id="node-process">
+                <div class="pipeline-node" id="node-process" style="--node-color: #10B981; --node-glow: rgba(16, 185, 129, 0.25);">
                   <div class="node-icon">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                       stroke-linecap="round" stroke-linejoin="round">
@@ -123,7 +124,7 @@
                 </div>
 
                 <!-- Stage 3 -->
-                <div class="pipeline-node" id="node-model">
+                <div class="pipeline-node" id="node-model" style="--node-color: #8B5CF6; --node-glow: rgba(139, 92, 246, 0.25);">
                   <div class="node-icon">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                       stroke-linecap="round" stroke-linejoin="round">
@@ -142,7 +143,7 @@
                 </div>
 
                 <!-- Stage 4 -->
-                <div class="pipeline-node" id="node-deliver">
+                <div class="pipeline-node" id="node-deliver" style="--node-color: #EAB308; --node-glow: rgba(234, 179, 8, 0.25);">
                   <div class="node-icon">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                       stroke-linecap="round" stroke-linejoin="round">
@@ -624,6 +625,130 @@
               <span class="project-tag">Flask</span>
               <span class="project-tag">HTML & CSS</span>
               <span class="project-tag">AI Agents</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Playground Section -->
+    <section id="playground" class="section" style="background-color: var(--bg-secondary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-tag">Interactive Sandbox</div>
+          <h2 class="section-title">AI & Spatial Playground</h2>
+          <p class="section-subtitle">Experience my work firsthand. Interact with live simulations of data pipelines, model training, and spatial optimizations.</p>
+        </div>
+
+        <div class="playground-tabs reveal">
+          <button class="playground-tab-btn active" data-tab="pipeline">Data & ML Pipeline</button>
+          <button class="playground-tab-btn" data-tab="spatial">Spatial EV Optimizer</button>
+        </div>
+
+        <div class="playground-content reveal">
+          <!-- Tab 1: Pipeline Sandbox -->
+          <div class="playground-pane active" id="pane-pipeline">
+            <div class="sandbox-grid">
+              <div class="sandbox-controls">
+                <h3>Pipeline Configuration</h3>
+                <p class="sandbox-desc" style="font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">Configure parameters to simulate the execution of a data science pipeline. The workflow ingests survey, satellite, or log data, executes cleaning transforms, and trains the selected ML model in real-time.</p>
+                <div class="control-group">
+                  <label for="dataset-select">Select Input Data:</label>
+                  <select id="dataset-select" class="sandbox-select">
+                    <option value="survey">Consumer Behavior Survey Data (Tabular)</option>
+                    <option value="satellite">Satellite GIS Imagery (Rasters)</option>
+                    <option value="traffic">Traffic Sensor Log Stream (Time Series)</option>
+                  </select>
+                </div>
+
+                <div class="control-group">
+                  <label for="model-select">Select ML Algorithm:</label>
+                  <select id="model-select" class="sandbox-select">
+                    <option value="regression">Random Forest / Regression</option>
+                    <option value="cnn">Convolutional Neural Net (Emotion Det.)</option>
+                    <option value="opencv">Bilateral Image Cartoonifier</option>
+                  </select>
+                </div>
+
+                <div class="control-group">
+                  <label for="lr-slider">Learning Rate: <span id="lr-val">0.010</span></label>
+                  <input type="range" id="lr-slider" min="0.005" max="0.050" step="0.005" value="0.010" class="sandbox-slider">
+                </div>
+
+                <button id="btn-run-pipeline" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">
+                  <span>Run Pipeline</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </button>
+
+                <div class="console-box">
+                  <div class="console-header">
+                    <span>System Console Log</span>
+                    <span class="console-dot"></span>
+                  </div>
+                  <div id="console-output" class="console-output">Ready to execute pipeline... Select inputs and click Run.</div>
+                </div>
+              </div>
+
+              <div class="sandbox-visualization">
+                <div class="vis-header">
+                  <h3>Live Metrics & Outputs</h3>
+                  <div id="pipeline-status-tag" class="status-tag idle">Idle</div>
+                </div>
+
+                <div class="vis-area">
+                  <canvas id="sandbox-vis-canvas" class="sandbox-canvas"></canvas>
+                  <div id="sandbox-output-overlay" class="output-overlay"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 2: Spatial Sandbox -->
+          <div class="playground-pane" id="pane-spatial">
+            <div class="sandbox-grid">
+              <div class="sandbox-controls">
+                <h3>Spatial Optimization</h3>
+                <p class="sandbox-desc" style="font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem;">Place EV Charging Stations on the grid to optimize routing. The algorithm recalculates distance intervals, overlapping coverage, and traffic density influence in real-time.</p>
+
+                <div class="control-group" style="margin-bottom: 1.5rem;">
+                  <button id="btn-toggle-traffic" class="btn btn-secondary active-toggle" style="width: 100%; justify-content: center;">
+                    <span>Toggle Traffic Heatmap</span>
+                  </button>
+                </div>
+
+                <div class="stats-panel">
+                  <div class="panel-stat">
+                    <span class="panel-stat-label">Coverage Efficiency</span>
+                    <span id="stat-coverage" class="panel-stat-val">0%</span>
+                  </div>
+                  <div class="panel-stat">
+                    <span class="panel-stat-label">Charging Overlap</span>
+                    <span id="stat-overlap" class="panel-stat-val">None</span>
+                  </div>
+                  <div class="panel-stat">
+                    <span class="panel-stat-label">Network Flow Score</span>
+                    <span id="stat-flow" class="panel-stat-val">Optimal</span>
+                  </div>
+                </div>
+
+                <button id="btn-reset-map" class="btn btn-secondary" style="width: 100%; justify-content: center; margin-top: 1rem;">Reset Grid Coordinates</button>
+              </div>
+
+              <div class="sandbox-visualization">
+                <div class="vis-header">
+                  <h3>Mumbai Spatial GIS Overlay</h3>
+                  <div class="vis-legend">
+                    <span class="legend-item"><span class="legend-dot road-dot"></span> Road Net</span>
+                    <span class="legend-item"><span class="legend-dot charger-dot"></span> EV Station</span>
+                  </div>
+                </div>
+                <div class="vis-area spatial-map-area">
+                  <canvas id="spatial-canvas" class="sandbox-canvas"></canvas>
+                  <div class="map-helper-text">Click anywhere on the map grid to place a charging station</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
